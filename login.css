@@ -9,6 +9,9 @@
 
 body {
 	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+	height: 100%;
+    margin: 0;
+    overflow: hidden;
 }
 
 .container {
@@ -16,6 +19,10 @@ body {
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
+	height: 100vh;
+    
+    
+
 }
 h2 {
   text-align: center;

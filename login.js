@@ -1,29 +1,26 @@
+
 document.getElementById('loginButton').addEventListener('click', function(event) {
-    
-    document.getElementById('emailError').textContent = '';
-    document.getElementById('passwordError').textContent = '';
+    event.preventDefault(); 
+
+   
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    let valid = true;
-    const myEmail = 'thayane520.biel@gmail.com'; 
-    const myPassword = '123'; 
-    if (!validateEmail(email)) {
-        document.getElementById('emailError').textContent = 'Por favor, insira um e-mail válido.';
-        valid = false;
-    } else if (email !== myEmail) {
-        document.getElementById('emailError').textContent = 'E-mail incorreto.';
-        valid = false;
-    }
-    if (password !== myPassword) {
-        document.getElementById('passwordError').textContent = 'Senha incorreta.';
-        valid = false;
-    }
-    if (valid) {
+
+    
+    console.log('Email:', email);
+    console.log('Password:', password);
+
+    
+    const validEmail = 'thayane520.biel@gmail.com'; 
+    const validPassword = '123'; 
+
+    console.log('Valid Email:', validEmail);
+    console.log('Valid Password:', validPassword);
+
+    if (email === validEmail && password === validPassword) {
+      
         window.location.href = './form.html';
+    } else {
+        alert('Email ou senha inválidos. Tente novamente.'); 
     }
 });
-
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
-}

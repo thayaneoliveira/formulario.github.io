@@ -1,0 +1,182 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+  }
+  
+  p.exito{
+    width: 80%;
+      padding: 20px;
+      text-align: center;
+      font-size: 40px;
+    line-height: 56px;
+    transition:all 0.6s ease;
+  }
+  
+  
+  .seccion{
+  -webkit-clip-path: polygon(0 1%, 100% 8%, 100% 100%, 0 91%);
+  clip-path: polygon(0 1%, 100% 8%, 100% 100%, 0 91%);
+    position:relative;
+     z-index: 0;
+    background:#9b59b6;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    margin:0;
+  }
+  
+  .form{
+    position:relative;
+    z-index:232322323;
+    background-color:#fff;
+    border-radius:8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    overflow:hidden;
+    width:400px;
+    max-width:100%;
+  }
+  
+  .header{
+    margin:0;
+    border-bottom:2px solid #f0f0f0;
+  }
+  
+  .header h2{
+    padding:10px;
+    text-align:center;
+    letter-spacing:2px;
+    text-transform:uppercase;
+  }
+  
+  /* estilos del formulario */
+  
+  .formulario{
+    padding:30px 40px;
+  }
+  
+  .form-control{
+    margin-bottom:10px;
+    padding-bottom:20px;
+    position:relative;
+  }
+  
+  .form-control label{
+    display:inline-block;
+    margin-bottom:5px;
+  }
+  
+  .form-control input{
+    border: 2px solid #f0f0f0;
+    border-radius:5px;
+    display:block;
+    font-size:14px;
+    padding:10px;
+    width:100%;
+  }
+  
+  .form-control input:focus{
+    outline:0;
+    border-color:#777;
+  }
+  
+  /* clase que agregaremos con js */
+  .form-control.valido input{
+    border-color: #2ecc71;
+    transition:all 0.3s ease-out;
+  }
+  
+  .form-control.error input{
+     transition:all 0.3s ease-out;
+        border-color: #e74c3c;
+  }
+  
+  .form-control i{
+    position:absolute;
+    /*  ocultamos los iconos y los mostramos con js  */
+    visibility:hidden;
+    top:40px;
+    right:10px;
+  }
+  
+  /* cuando tenga la clase valido o error los iconos cambiaran de color y se mostraran */
+  
+  .form-control.valido i.fa-check-circle{
+    color:#2ecc71;
+    visibility:visible;
+  }
+  
+  .form-control.error i.fa-exclamation-circle{
+    color:#e74c3c;
+    visibility:visible;
+  }
+  /*  */
+  
+  .form-control small{
+    color:#e74c3c;
+    position:absolute;
+    bottom:0;
+    laft:0;
+  /*  ocultamos el error y lo mostramos con js  */
+    visibility:hidden;
+  }
+  
+  /* mostramos el error cuando tenga la clase error el form-control  */
+  
+  .form-control.error small{
+    visibility:visible;
+    transition:all 0.6s ease;
+  }
+  
+  .form-control.valido small{
+    visibility:visible;
+    color:#3b7152;
+    transition:all 0.6s ease;
+  }
+  
+  /*  */
+  
+  .form button {
+      background-color: #8e44ad;
+      border: 2px solid #8e44ad;
+      border-radius: 0px;
+      color: #fff;
+      display: block;
+      font-family: inherit;
+      font-size: 16px;
+      padding: 10px;
+      
+      width: 100%;
+    cursor:pointer;
+  }
+  
+  .form button:focus{
+    color:#FFF;
+    outline:0;
+    border:2px solid #000;
+    background:#000;
+    transition:all 0.6s ease;
+  }
+  
+  /*quitamos las flechas del imput type numer  */
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

@@ -19,7 +19,7 @@ document.getElementById('loginButton').addEventListener('click', function(event)
 
     if (email === validEmail && password === validPassword) {
       
-        window.location.href = './form.html';
+        window.location.href = 'http://127.0.0.1:5500/form.html';
     } else {
         alert('Email ou senha inválidos. Tente novamente.'); 
     }

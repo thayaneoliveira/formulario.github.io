@@ -1,33 +1,50 @@
-// form.js
+import { db } from './firebase-config.js'; 
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
-// Inicializa o EmailJS
+
 (function(){
-    emailjs.init("SoYFGdC765nftygyX"); // Substitua pela sua Public API Key
+    emailjs.init("SoYFGdC765nftygyX"); 
 })();
 
-// Manipula o envio do formulário
+
 document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
+    event.preventDefault(); 
 
-    // Coleta os dados do formulário
-    const userName = document.getElementById("txt").value; // Nome de usuário
-    const userEmail = document.getElementById("email").value; // E-mail
-    const userPhone = document.getElementById("broj").value; // Telefone
-    const userAge = document.getElementById("password").value; // Idade
+    
+    const userName = document.getElementById("txt").value; 
+    const userEmail = document.getElementById("email").value; 
+    const userPhone = document.getElementById("broj").value; 
+    const userAge = document.getElementById("password").value; 
 
-    // Cria um objeto com os dados do formulário
+   
     const templateParams = {
-        from_name: userName, // Corresponde ao template
-        to_email: userEmail, // Corresponde ao template
-        phone: userPhone,     // Corresponde ao template
-        age: userAge,        // Corresponde ao template
+        from_name: userName, 
+        to_email: userEmail, 
+        phone: userPhone,    
+        age: userAge,        
     };
 
-    // Envia o e-mail
     emailjs.send("gmailMessage", "template_febra45", templateParams)
         .then(function(response) {
             console.log("Email enviado com sucesso!", response.status, response.text);
             alert("Formulário enviado com sucesso!");
+
+          
+            addDoc(collection(db, "userSubmissions"), {
+                name: userName,
+                email: userEmail,
+                phone: userPhone,
+                age: userAge,
+                timestamp: new Date() 
+            })
+            .then(function() {
+                console.log("Dados salvos no Firestore com sucesso!");
+                alert("Dados salvos no banco de dados com sucesso!");
+            })
+            .catch(function(error) {
+                console.error("Erro ao salvar os dados no Firestore:", error);
+                alert("Erro ao salvar os dados no banco de dados.");
+            });
         }, function(error) {
             console.log("Erro ao enviar o e-mail:", error);
             alert("Erro ao enviar formulário. Tente novamente.");

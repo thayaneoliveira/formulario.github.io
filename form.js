@@ -10,13 +10,11 @@ import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.1/f
 document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault(); 
 
-    
     const userName = document.getElementById("txt").value; 
     const userEmail = document.getElementById("email").value; 
     const userPhone = document.getElementById("broj").value; 
     const userAge = document.getElementById("password").value; 
 
-   
     const templateParams = {
         from_name: userName, 
         to_email: userEmail, 
@@ -29,7 +27,6 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
             console.log("Email enviado com sucesso!", response.status, response.text);
             alert("Formulário enviado com sucesso!");
 
-          
             addDoc(collection(db, "userSubmissions"), {
                 name: userName,
                 email: userEmail,
@@ -38,8 +35,11 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
                 timestamp: new Date() 
             })
             .then(function() {
-                console.log("Dados salvos no Firestore com sucesso!");
-                alert("Dados salvos no banco de dados com sucesso!");
+                // console.log("Dados salvos no Firestore com sucesso!");
+                // alert("Dados salvos no banco de dados com sucesso!");
+
+                
+                document.getElementById("loginForm").reset();
             })
             .catch(function(error) {
                 console.error("Erro ao salvar os dados no Firestore:", error);

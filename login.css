@@ -48,12 +48,16 @@ input {
 	display: flex;
 	margin: 20px auto;
 	padding: 12px;
+	font-size: 14px;
+	font-weight: bold;
 	border: none;
 	outline: none;
 	border-radius: 5px;
 }
 
-.signup-button { /* Estilizando o link como botão */
+
+
+.signup-button { 
 	width: 60%;
 	height: 40px;
 	margin: 10px auto;
@@ -64,33 +68,34 @@ input {
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 30px;
-	text-decoration: none; /* Remove o sublinhado */
+	text-decoration: none; 
 	border-radius: 5px;
-	text-align: center; /* Centraliza o texto */
-	line-height: 40px; /* Centraliza verticalmente o texto */
-	transition: background 0.2s ease-in; /* Transição suave */
+	text-align: center; 
+	line-height: 40px; 
+	transition: background 0.2s ease-in; 
 }
 
 .signup-button:hover {
-	background: #6d44b8; /* Cor ao passar o mouse */
+	background: #6d44b8; 
 }
 
 #googleLogin {
-    display: flex; /* Usa flexbox para alinhar a imagem e o texto */
-    align-items: center; /* Alinha a imagem e o texto verticalmente */
-    padding: 10px 15px; /* Espaçamento interno do botão */
-    border: none; /* Remove a borda padrão */
-    background-color: transparent; /* Torna o fundo do botão transparente */
-    color: white; /* Cor do texto */
-    font-size: 16px; /* Tamanho da fonte */
-    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    display: flex; 
+    align-items: center; 
+    padding: 10px 15px;
+    border: none; 
+    background-color: transparent; 
+    color: white; 
+    font-size: 16px; 
+	cursor: pointer;
     margin: 0 auto;
-    margin-top: 15px;
-    border-radius: 5px; /* Arredonda os cantos do botão, se desejar */
+    margin-top: 2rem;
+    border-radius: 5px; 
 }
 
 #googleLogin:hover {
-    background-color: transparent; /* Mantém o fundo transparente ao passar o mouse */
+    text-decoration: underline;
+	
 }
 
 #googleLogin:focus {

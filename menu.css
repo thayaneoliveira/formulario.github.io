@@ -1,0 +1,100 @@
+body {
+  background-color: rgb(8, 8, 43);
+  overflow-x: hidden;
+}
+
+.menu {
+  text-align: end;
+  margin-top: -80px;
+  margin-right: 16px;
+}
+
+.menu a {
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 10px;
+  border-bottom: #2bd6b4;
+  text-align: center;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  font-family: sans-serif;
+}
+
+.menu a:hover {
+  background-color: #2bd6b4;
+  color: darkblue;
+  transition: 0.5s;
+  border-radius: 5px;
+}
+
+h1 {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 40px;
+  color: #2bd6b4;
+  text-shadow: 2px 2px 4px #000000;
+  font-family: "Cherry Swash", cursive;
+}
+
+#titulo {
+  text-align: center;
+  margin-top: 250px;
+  color: #ffffffea;
+  font-size: 3vw; /* Usa vw para tornar o título responsivo */
+}
+
+p {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+span {
+  color: #2bd6b4;
+}
+
+@media (max-width: 480px) {
+  #titulo {
+    font-size: 6vw; /* Aumenta um pouco o tamanho da fonte em telas pequenas */
+  }
+}
+
+.footer {
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.social-links {
+  list-style: none; /* Remove marcadores da lista */
+  display: flex; /* Flexbox para alinhar itens lado a lado */
+  justify-content: center; /* Centraliza os links */
+  padding: 0; /* Remove padding padrão */
+ 
+}
+
+.social-links li {
+  margin: 15px 15px; /* Espaçamento entre os itens da lista */
+}
+
+.social-links img {
+  width: 32px; /* Tamanho fixo das imagens */
+  height: 32px;
+}
+
+.text-final {
+    text-align: center;
+    padding: 0; /* Remove padding padrão */
+    margin: 0;
+    font-size: 12px;
+    
+    
+   
+}

@@ -6,32 +6,46 @@
     <title>Cadastro</title>
     <link rel="stylesheet" href="form.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-	<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
-(function(){
-  emailjs.init({
-	publicKey: "SoYFGdC765nftygyX",
-  });
-})();
-</script>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+      emailjs.init({
+        publicKey: "SoYFGdC765nftygyX",
+      });
+    })();
+    </script>
+</head>
 <body>
-    <div class="main">  	
-        <input type="checkbox" id="chk" aria-hidden="true">
-        <form id="loginForm">
-            <div class="signup">
-                <label for="chk" aria-hidden="true">Cadastro</label>
-                <input type="text" id="txt" name="txt" placeholder="User name" required="">
-                <input type="email" id="email" name="email" placeholder="Email" required="">
-                <input type="number" id="broj" name="broj" placeholder="Telefone" required="">		
-                <input type="password" id="password" name="password" placeholder="Idade" required="">		
-                <button type="submit" id="loginButton">Enviar</button>
-            </div>
-        </form>	
-    </div>
-    <script type="module" src="./firebase-config.js"></script>
-    <script type="module" src="./form.js"></script>
+    
+    <header>
+        <nav class="nav">
+            <ul>
+                <li><a href="./menu.html">Home</a></li>            
+                <li><a href="https://thayaneoliveira.github.io/" target="_blank">Portfolio</a></li>
+                <li><a href="./maps.html">GoogleMaps</a></li>
+                <li><a href="https://wa.me/5592984240118" target="_blank">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <div class="container">
+        <div class="main">  
+            <input type="checkbox" id="chk" aria-hidden="true">
+            <form id="loginForm">
+                <div class="signup">
+                    <label for="chk" aria-hidden="true">Cadastro</label>
+                    <input type="text" id="txt" name="txt" placeholder="User name" required="">
+                    <input type="email" id="email" name="email" placeholder="Email" required="">
+                    <input type="number" id="broj" name="broj" placeholder="Telefone" required="">		
+                    <input type="password" id="password" name="password" placeholder="Idade" required="">		
+                    <button type="submit" id="loginButton">Enviar</button>
+                </div>
+            </form>	
+        </div>
+        <script type="module" src="./firebase-config.js"></script>
+        <script type="module" src="./form.js"></script>
+    </div>
 </body>
 </html>

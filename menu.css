@@ -40,7 +40,7 @@ h1 {
   text-align: center;
   margin-top: 250px;
   color: #ffffffea;
-  font-size: 3vw; /* Usa vw para tornar o título responsivo */
+  font-size: 3vw; 
 }
 
 p {
@@ -58,7 +58,7 @@ span {
 
 @media (max-width: 480px) {
   #titulo {
-    font-size: 6vw; /* Aumenta um pouco o tamanho da fonte em telas pequenas */
+    font-size: 6vw;
   }
 }
 
@@ -73,25 +73,25 @@ span {
 }
 
 .social-links {
-  list-style: none; /* Remove marcadores da lista */
-  display: flex; /* Flexbox para alinhar itens lado a lado */
-  justify-content: center; /* Centraliza os links */
-  padding: 0; /* Remove padding padrão */
+  list-style: none;
+  display: flex; 
+  justify-content: center; 
+  padding: 0;
  
 }
 
 .social-links li {
-  margin: 15px 15px; /* Espaçamento entre os itens da lista */
+  margin: 15px 15px;
 }
 
 .social-links img {
-  width: 32px; /* Tamanho fixo das imagens */
+  width: 32px;
   height: 32px;
 }
 
 .text-final {
     text-align: center;
-    padding: 0; /* Remove padding padrão */
+    padding: 0;
     margin: 0;
     font-size: 12px;
     

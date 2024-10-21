@@ -1,13 +1,11 @@
-// Inicialize o mapa
-const map = L.map('map').setView([-23.5505, -46.6333], 12); // São Paulo, Brasil
+// Importando a autenticação do Firebase
+import { auth } from "./firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 
-// Adicione um layer de mapa usando OpenStreetMap
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap'
-}).addTo(map);
-
-// Adicione um marcador
-L.marker([-23.5505, -46.6333]).addTo(map)
-    .bindPopup('Localização')
-    .openPopup();
+// Verifica o estado da autenticação
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    // Se o usuário não estiver logado, redireciona para a página de login
+    window.location.href = "login.html";
+  }
+});

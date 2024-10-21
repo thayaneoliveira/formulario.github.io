@@ -13,7 +13,7 @@
       <input type="checkbox" id="chk" aria-hidden="true" />
 
       <div class="signup">
-        <form id="loginForm" onsubmit="return false;">
+        <form id="loginForm">
           <label for="chk" aria-hidden="true">Login</label>
           <input
             type="email"
@@ -30,10 +30,8 @@
             required
           />
 
-          <a href="./menu.html" id="loginButton" class="signup-button"
-            >Sign up</a
-          >
-          <button id="googleLogin">
+          <button type="submit" class="signup-button">Login</button>
+          <button type="button" id="googleLogin">
             <img
               src="./icons8-google-logo-64.png"
               alt="Imagem do Google"

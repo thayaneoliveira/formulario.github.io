@@ -18,6 +18,9 @@ document
     const validPassword = "123456";
 
     if (email === validEmail && password === validPassword) {
+
+      sessionStorage.setItem('isAuthenticated', 'true');
+
       window.location.href = "./menu.html";
     } else {
       alert("Email ou senha incorretos. Por favor, tente novamente.");

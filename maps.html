@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="./maps.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
+    <script type="text/javascript">
+      if (sessionStorage.getItem("isAuthenticated") !== "true") {
+        window.location.href = "login.html";
+      }
+    </script>
+
     <style>
       #map {
         width: 90vw;
@@ -48,7 +54,8 @@
         padding: 6px;
       }
 
-      html, body {
+      html,
+      body {
         background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
         height: 100vh;
         margin: 0;
@@ -59,7 +66,6 @@
         flex-direction: column;
       }
 
-   
       header {
         position: absolute;
         top: 0;
@@ -75,11 +81,11 @@
         display: flex;
         gap: 15px;
       }
-      
+
       .nav li {
         margin: 0;
       }
-      
+
       .nav a {
         text-decoration: none;
         color: white;
@@ -90,27 +96,36 @@
       }
 
       .nav a:hover {
-        background: #2BD6B4;
+        background: #2bd6b4;
         color: #302b63;
       }
     </style>
   </head>
   <body>
-
     <header>
       <nav class="nav">
         <ul>
           <li><a href="./menu.html">Home</a></li>
-          <li><a href="https://thayaneoliveira.github.io/" target="_blank">Portfolio</a></li>
+          <li>
+            <a href="https://thayaneoliveira.github.io/" target="_blank"
+              >Portfolio</a
+            >
+          </li>
           <li><a href="./form.html">Formulario</a></li>
-          <li><a href="https://wa.me/5592984240118" target="_blank">Contato</a></li>
+          <li>
+            <a href="https://wa.me/5592984240118" target="_blank">Contato</a>
+          </li>
         </ul>
       </nav>
     </header>
 
     <div id="map">
       <div class="controls">
-        <input type="text" id="address" placeholder="Digite o nome do endereço" />
+        <input
+          type="text"
+          id="address"
+          placeholder="Digite o nome do endereço"
+        />
         <button id="searchAddress">Buscar Endereço</button>
       </div>
     </div>

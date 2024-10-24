@@ -6,72 +6,40 @@
     <title>MapsLeaflet</title>
     <link rel="stylesheet" href="./maps.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-    <script type="text/javascript">
-      if (sessionStorage.getItem("isAuthenticated") !== "true") {
-        window.location.href = "login.html";
-      }
-    </script>
-
     <style>
+      /* Estilos gerais */
+      body {
+        background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
       #map {
         width: 90vw;
         height: 60vh;
         max-width: 1000px;
         max-height: 600px;
         background-color: rgb(29, 4, 138);
-        position: relative;
-        margin: 0 auto;
         border-radius: 15px;
-      }
-
-      .controls {
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        transform: translateX(-50%);
-        z-index: 1000;
-        background-color: transparent;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-
-      #address {
-        background-color: rgba(255, 255, 255, 0.897);
-        border-radius: 5px;
-        border: 1px solid rgb(29, 4, 138);
-        padding: 8px;
-      }
-
-      #searchAddress {
-        background-color: rgba(255, 255, 255, 0.897);
-        border-radius: 8px;
-        border: 1px solid rgb(29, 4, 138);
-        padding: 6px;
-      }
-
-      html,
-      body {
-        background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+        margin: 20px 0;
       }
 
       header {
         position: absolute;
-        top: 0;
-        right: 0;
-        padding: 20px;
+        top: 20px;
+        right: 20px;
         z-index: 1000;
+      }
+
+      .nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       .nav ul {
@@ -79,11 +47,21 @@
         padding: 0;
         margin: 0;
         display: flex;
-        gap: 15px;
+        flex-direction: column; /* Exibe os itens em coluna inicialmente */
+        align-items: center; /* Centraliza os itens */
+        transition: max-height 0.5s ease; /* Adiciona uma transição suave */
+        max-height: 0; /* Oculta o menu inicialmente */
+        overflow: hidden; /* Esconde o conteúdo extra */
+      }
+
+      .nav.open ul {
+        max-height: 200px; /* Define uma altura máxima quando visível */
+        display: flex; /* Exibe o menu */
+        flex-direction: column; /* Mantém os itens em coluna */
       }
 
       .nav li {
-        margin: 0;
+        margin: 5px 0; /* Margem entre os itens */
       }
 
       .nav a {
@@ -91,20 +69,43 @@
         color: white;
         padding: 10px 15px;
         border-radius: 5px;
-        transition: background 0.3s;
         font-family: sans-serif;
       }
 
       .nav a:hover {
-        background: #2bd6b4;
-        color: #302b63;
+        background: rgba(255, 255, 255, 0.3); /* Efeito de hover */
+      }
+
+      /* Estilo do botão hamburger */
+      .hamburger {
+        display: block; /* Mostra o botão hamburger em telas menores */
+        font-size: 24px; /* Tamanho do ícone do menu */
+        cursor: pointer; /* Muda o cursor para indicar que é clicável */
+        color: white; /* Cor do ícone */
+        margin-bottom: 10px; /* Espaço abaixo do botão hamburger */
+      }
+
+      @media (min-width: 1000px) {
+        .nav ul {
+          flex-direction: row; /* Exibe os itens em linha em telas maiores */
+          max-height: none; /* Remove a limitação de altura */
+        }
+
+        .nav.open ul {
+          max-height: none; /* Remove a limitação de altura quando aberto */
+        }
+
+        .hamburger {
+          display: none; /* Oculta o botão hamburger em telas maiores */
+        }
       }
     </style>
   </head>
   <body>
     <header>
-      <nav class="nav">
-        <ul>
+      <nav class="nav" id="navbar">
+        <span class="hamburger" id="menu-toggle">&#9776;</span>
+        <ul id="navList">
           <li><a href="./menu.html">Home</a></li>
           <li>
             <a href="https://thayaneoliveira.github.io/" target="_blank"
@@ -119,18 +120,17 @@
       </nav>
     </header>
 
-    <div id="map">
-      <div class="controls">
-        <input
-          type="text"
-          id="address"
-          placeholder="Digite o nome do endereço"
-        />
-        <button id="searchAddress">Buscar Endereço</button>
-      </div>
-    </div>
+    <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="./maps.js"></script>
+    <script>
+      const navbar = document.getElementById("navbar");
+      const hamburger = document.getElementById("menu-toggle");
+
+      hamburger.addEventListener("click", () => {
+        navbar.classList.toggle("open"); // Alterna a classe 'open' na navbar
+      });
+    </script>
   </body>
 </html>

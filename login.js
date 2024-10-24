@@ -6,6 +6,7 @@ import {
 
 const provider = new GoogleAuthProvider();
 
+// Formulário de login
 document
   .getElementById("loginForm")
   .addEventListener("submit", function (event) {
@@ -18,22 +19,27 @@ document
     const validPassword = "123456";
 
     if (email === validEmail && password === validPassword) {
-
-      sessionStorage.setItem('isAuthenticated', 'true');
-
+      sessionStorage.setItem("isAuthenticated", "true");
       window.location.href = "./menu.html";
     } else {
       alert("Email ou senha incorretos. Por favor, tente novamente.");
     }
   });
 
+// Login com Google
 document.getElementById("googleLogin").addEventListener("click", function () {
   signInWithPopup(auth, provider)
     .then((result) => {
-      console.log(result.user);
+      // O usuário logado
+      const user = result.user;
+      console.log("Usuário logado com Google:", user);
+      sessionStorage.setItem("isAuthenticated", "true");
       window.location.href = "./menu.html";
     })
     .catch((error) => {
       console.error("Erro ao fazer login com Google:", error);
+      alert(
+        "Erro ao tentar fazer login com o Google. Verifique o console para mais detalhes."
+      );
     });
 });

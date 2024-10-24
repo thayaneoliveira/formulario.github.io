@@ -5,30 +5,89 @@ body {
 }
 
 .menu {
-  text-align: end;
+  display: flex;
+  justify-content: flex-end; /* Move o menu para a direita */
   margin-top: 30px;
   margin-right: 30px;
-  flex-wrap: wrap;
+  position: relative;
 }
 
-.menu a {
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links li a {
   text-decoration: none;
   padding: 10px;
   border-radius: 10px;
-  border-bottom: #2bd6b4;
-  text-align: center;
+  color: white;
   font-size: 20px;
-  color: rgb(255, 255, 255);
   font-family: sans-serif;
 }
 
-.menu a:hover {
+.nav-links li a:hover {
   background-color: #2bd6b4;
   color: darkblue;
   transition: 0.5s;
   border-radius: 5px;
 }
 
+/* Ícone de hamburguer */
+.burguer {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.burguer span {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 5px;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: transparent;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  #menu-toggle:checked ~ .nav-links {
+    display: flex;
+  }
+
+  .burguer {
+    display: flex;
+  }
+
+  .menu a {
+    font-size: 4vw;
+    padding: 15px 0;
+  }
+
+  /* Esconder o checkbox padrão */
+  #menu-toggle {
+    display: none;
+  }
+}
+
+/* Estilo adicional */
 h1 {
   text-align: center;
   margin: 40px 0;

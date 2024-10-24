@@ -13,12 +13,14 @@ body {
 }
 
 .nav-links {
-  display: flex;
+  display: flex; /* Mostra os links do menu em telas grandes */
   list-style: none;
+  margin: 0; /* Remove margens padrão */
+  padding: 0; /* Remove padding padrão */
 }
 
 .nav-links li {
-  margin-left: 20px;
+  margin: 0 10px; /* Margem entre os itens do menu */
 }
 
 .nav-links li a {
@@ -30,16 +32,19 @@ body {
   font-family: sans-serif;
 }
 
-.nav-links li a:hover {
-  background-color: #2bd6b4;
-  color: darkblue;
-  transition: 0.5s;
-  border-radius: 5px;
+/* Efeito de hover apenas para telas grandes */
+@media (min-width: 1001px) {
+  .nav-links li a:hover {
+    background-color: #2bd6b4;
+    color: darkblue;
+    transition: 0.5s;
+    border-radius: 5px;
+  }
 }
 
 /* Ícone de hamburguer */
 .burguer {
-  display: none;
+  display: none; /* Esconde o ícone de hamburguer por padrão */
   flex-direction: column;
   cursor: pointer;
 }
@@ -51,43 +56,38 @@ body {
   margin: 5px;
 }
 
+/* Checkbox para controle do menu */
 #menu-toggle {
-  display: none;
+  display: none; /* Esconder o checkbox padrão */
 }
 
 /* Responsividade */
 @media (max-width: 1000px) {
   .nav-links {
-    display: none;
-    flex-direction: column;
-    background-color: transparent;
+    display: none; /* Esconde o menu por padrão em telas pequenas */
+    flex-direction: column; /* Empilha os itens do menu */
+    background-color: rgb(8, 8, 43); /* Cor de fundo do menu */
     position: absolute;
-    top: 50px;
-    right: 0;
-    width: 100%;
-    text-align: center;
+    top: 50px; /* Ajuste conforme necessário */
+    right: 0; /* Ajuste conforme necessário */
+    width: 100%; /* Ocupa toda a largura */
+    text-align: center; /* Centraliza os itens */
   }
 
   #menu-toggle:checked ~ .nav-links {
-    display: flex;
+    display: flex; /* Exibe o menu quando o checkbox está marcado */
   }
 
   .burguer {
-    display: flex;
+    display: flex; /* Exibe o ícone de hambúrguer em telas pequenas */
   }
 
   .menu a {
-    font-size: 4vw;
-    padding: 15px 0;
-  }
-
-  /* Esconder o checkbox padrão */
-  #menu-toggle {
-    display: none;
+    font-size: 4vw; /* Ajusta o tamanho da fonte em telas pequenas */
+    padding: 15px 0; /* Ajusta o padding */
   }
 }
 
-/* Estilo adicional */
 h1 {
   text-align: center;
   margin: 40px 0;

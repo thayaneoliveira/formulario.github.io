@@ -1,61 +1,61 @@
 html,
 body {
-  overflow: hidden; /* Remove o scroll em ambas as direções */
-  height: 100%; /* Define a altura total */
+  overflow: hidden; 
+  height: 100%; 
 }
 
 body {
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column; /* Alinha o conteúdo verticalmente */
-  align-items: flex-start; /* Alinha o conteúdo à esquerda */
+  flex-direction: column; 
+  align-items: flex-start; 
   min-height: 100vh;
   font-family: "Jost", sans-serif;
   background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
 }
 
 header {
-  width: 100%; /* O cabeçalho ocupa toda a largura */
-  padding: 10px 16px; /* Espaçamento interno do cabeçalho */
-  display: flex; /* Usando flexbox */
-  justify-content: flex-end; /* Alinha o conteúdo à direita */
+  width: 100%;
+  padding: 10px 16px; 
+  display: flex; 
+  justify-content: flex-end; 
 }
 
 .nav ul {
-  list-style: none; /* Remove marcadores da lista */
-  padding: 0; /* Remove o padding padrão */
-  margin: 20px 40px; /* Remove a margem padrão */
-  display: flex; /* Flexbox para alinhar os itens */
+  list-style: none; 
+  padding: 0; 
+  margin: 20px 40px; 
+  display: flex; 
 }
 
 .nav li {
-  margin-left: 15px; /* Espaço entre os itens do menu */
+  margin-left: 15px; 
 }
 
 .nav a {
   text-decoration: none;
   font-family: sans-serif;
-  color: white; /* Cor do texto */
-  padding: 10px 15px; /* Espaçamento interno */
-  border-radius: 5px; /* Bordas arredondadas */
-  transition: background 0.3s; /* Transição suave para a cor de fundo */
+  color: white;
+  padding: 10px 15px; 
+  border-radius: 5px; 
+  transition: background 0.3s; 
 }
 
 .nav a:hover {
-  background: #2bd6b4;
-  color: #302b63;
-  transition: 0.5s; /* Cor de fundo ao passar o mouse */
+  text-decoration: underline;
+  color: #2bd6b4;
+  
 }
 
 .container {
-  width: 100vw; /* Ajusta a largura para a viewport */
-  height: 100vh; /* Ajusta a altura para a viewport */
-  overflow: hidden; /* Remove rolagem dentro do container */
+  width: 100vw;
+  height: 100vh; 
+  overflow: hidden; 
   display: flex;
-  justify-content: center; /* Centraliza o conteúdo da div */
+  justify-content: center; 
   align-items: center;
-  flex-direction: column; /* Alinha o conteúdo verticalmente */
+  flex-direction: column; 
 }
 
 .main {
@@ -159,35 +159,35 @@ button:hover {
   }
 
   .main {
-    width: 90%; /* Diminui a largura em telas menores */
-    height: auto; /* Permite que a altura se ajuste ao conteúdo */
+    width: 90%; 
+    height: auto; 
   }
 
   input,
   button {
-    width: 80%; /* Alarga os inputs e botões para 80% em telas menores */
+    width: 80%; 
   }
 
   label {
-    font-size: 1.8em; /* Diminui o tamanho do texto do label */
+    font-size: 1.8em; 
     margin: 30px;
   }
 }
 
-/* Ajustes para dispositivos móveis */
+
 @media (max-width: 480px) {
   .main {
-    width: 100%; /* Ocupa toda a largura da tela */
-    height: auto; /* Altura automática */
+    width: 100%; 
+    height: auto; 
   }
 
   label {
-    font-size: 1.5em; /* Tamanho menor para se ajustar às telas pequenas */
+    font-size: 1.5em; 
     margin: 20px;
   }
 
   input,
   button {
-    width: 90%; /* Mais espaço para os inputs e botões */
+    width: 90%; 
   }
 }

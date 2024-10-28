@@ -35,10 +35,9 @@ body {
 
 @media (min-width: 1001px) {
     .nav-links li a:hover {
-        background-color: #2bd6b4;
-        color: darkblue;
-        transition: 0.5s;
-        border-radius: 5px;
+        text-decoration: underline;
+        color: #2bd6b4;
+        
     }
 }
 

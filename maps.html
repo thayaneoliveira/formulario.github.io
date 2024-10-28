@@ -1,224 +1,276 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MapsLeaflet</title>
 
     <script type="text/javascript">
-      if (sessionStorage.getItem("isAuthenticated") !== "true") {
-        window.location.href = "login.html";
-      }
+        if (sessionStorage.getItem("isAuthenticated") !== "true") {
+            window.location.href = "login.html";
+        }
     </script>
     <link rel="shortcut icon" href="./icons8-marcador-de-mapa-96.png" type="image/x-icon">
     <link rel="stylesheet" href="./maps.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-      body {
-        background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 100vh;
-        overflow: hidden;
-      }
+        body {
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-      #map {
-        width: 90vw;
-        height: 60vh;
-        max-width: 1000px;
-        max-height: 600px;
-        background-color: rgb(29, 4, 138);
-        border-radius: 15px;
-        margin: 20px 0;
-      }
+        #map {
+            width: 90vw;
+            height: 60vh;
+            max-width: 1000px;
+            max-height: 600px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 15px;
+            margin: 20px 0;
+        }
 
-      header {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        z-index: 1000;
-      }
+        header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
 
-      .nav {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
+        .nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-      .nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: max-height 0.5s ease;
-        max-height: 0;
-        overflow: hidden;
-      }
-
-      .nav.open ul {
-        max-height: 200px;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .nav li {
-        margin: 5px 0;
-      }
-
-      .nav a {
-        text-decoration: none;
-        color: white;
-        padding: 10px 15px;
-        border-radius: 5px;
-        font-family: sans-serif;
-      }
-
-      
-      .hamburger {
-        display: block;
-        font-size: 24px;
-        cursor: pointer;
-        color: white;
-        margin-bottom: 10px;
-      }
-
-      @media (min-width: 1000px) {
         .nav ul {
-          flex-direction: row;
-          max-height: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            transition: max-height 0.5s ease;
+            max-height: 0;
+            overflow: hidden;
         }
 
         .nav.open ul {
-          max-height: none;
+            max-height: 200px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav li {
+            margin: 5px 0;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: sans-serif;
         }
 
         .hamburger {
-          display: none;
+            display: block;
+            font-size: 24px;
+            cursor: pointer;
+            color: white; // Inicializa o mapa
+            margin-bottom: 10px;
         }
-      }
 
-      .controls {
-        position: absolute;
-        top: 150px;
-      }
+        @media (min-width: 1000px) {
+            .nav ul {
+                flex-direction: row;
+                max-height: none;
+            }
 
-      #address {
-        background-color: #ffffff;
-        border-radius: 5px;
-        border: 1px solid #002488;
-        padding: 8px;
-        margin-top: 5px;
-        margin-left: 40px;
-      }
+            .nav.open ul {
+                max-height: none;
+            }
 
-      #searchAddress {
-        background-color: rgb(255, 255, 255);
-        border: 1px solid #002488;
-        border-radius: 5px;
-        padding: 8px 12px;
-        cursor: pointer;
-      }
+            .hamburger {
+                display: none;
+            }
+        }
+
+        .controls {
+            position: absolute;
+            top: 150px;
+        }
+
+        #address {
+            background-color: #ffffff;
+            border-radius: 5px;
+            border: 1px solid #002488;
+            padding: 8px;
+            margin-top: 5px;
+            margin-left: 40px;
+        }
+
+        #searchAddress {
+            background-color: rgb(255, 255, 255);
+            border: 1px solid #002488;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <header>
-      <nav class="nav">
-        <input type="checkbox" id="menu-toggle" />
-        <label for="menu-toggle" class="burguer">
-          <span></span>
-          <span></span>
-          <span></span>
-        </label>
-        <ul class="nav-links">
-          <li><a href="./menu.html">Home</a></li>
-          <li>
-            <a href="https://thayaneoliveira.github.io/" target="_blank"
-              >Portfolio</a
-            >
-          </li>
-          <li><a href="./form.html">Formulario</a></li>
-          <li>
-            <a href="https://wa.me/5592984240118" target="_blank">Contato</a>
-          </li>
-        </ul>
-      </nav>
+        <nav class="nav">
+            <input type="checkbox" id="menu-toggle" />
+            <label for="menu-toggle" class="burguer">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <ul class="nav-links">
+                <li><a href="./menu.html">Home</a></li>
+                <li><a href="https://thayaneoliveira.github.io/" target="_blank">Portfolio</a></li>
+                <li><a href="./form.html">Formulario</a></li>
+                <li><a href="https://wa.me/5592984240118" target="_blank">Contato</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div id="map"></div>
     <div class="controls">
-      <input type="text" id="address" placeholder="Digite o endereço ou CEP" />
-      <button id="searchAddress">Buscar</button>
+        <input type="text" id="address" placeholder="Digite o endereço ou CEP" />
+        <button id="searchAddress">Buscar</button>
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="./maps.js"></script>
     <script>
-      // Inicializa o mapa
-      const map = L.map("map").setView([-3.1190275, -60.0217314], 13);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-      }).addTo(map);
+       
+        const map = L.map("map").setView([-3.1190275, -60.0217314], 13);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+        }).addTo(map);
 
-      // Função para buscar e localizar o endereço
-      document.getElementById("searchAddress").addEventListener("click", () => {
-        const address = document.getElementById("address").value;
-        if (!address) return;
+        let userMarker; 
+        let searchMarker; 
 
-        fetch(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${address}`
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            if (data && data.length > 0) {
-              const { lat, lon } = data[0];
-              map.setView([lat, lon], 16);
+        
+        document.getElementById("searchAddress").addEventListener("click", () => {
+            const address = document.getElementById("address").value.trim();
+            if (!address) return;
 
-              L.marker([lat, lon])
-                .addTo(map)
-                .bindPopup(`Endereço: ${address}`)
-                .openPopup();
-            } else {
-              alert("Endereço não encontrado.");
+            const isCEP = /^[0-9]{5}-[0-9]{3}$/.test(address); 
+            const fetchUrl = isCEP
+                ? `https://viacep.com.br/ws/${address.replace('-', '')}/json/` 
+                : `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(address)}`; // URL para buscar endereço
+
+            fetch(fetchUrl)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Erro na busca do endereço");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log("Resposta da API:", data); 
+                    if (isCEP) {
+                        
+                        if (data && !data.erro) { 
+                            const { logradouro, bairro, localidade, uf } = data; 
+                            const fullAddress = `${logradouro}, ${bairro}, ${localidade} - ${uf}`;
+
+                            
+                            fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(fullAddress)}`)
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error("Erro ao obter coordenadas.");
+                                    }
+                                    return response.json();
+                                })
+                                .then(coordsData => {
+                                    if (coordsData && coordsData.length > 0) {
+                                        const { lat, lon } = coordsData[0]; 
+                                        map.setView([lat, lon], 16);
+                                        addSearchMarker(lat, lon, fullAddress);
+                                    } else {
+                                        alert("Coordenadas não encontradas para o CEP.");
+                                    }
+                                });
+                        } else {
+                            alert("CEP não encontrado.");
+                        }
+                    } else {
+                       
+                        if (data && data.length > 0) {
+                            const { lat, lon } = data[0]; 
+                            map.setView([lat, lon], 16);
+                            addSearchMarker(lat, lon, data[0].display_name);
+                        } else {
+                            alert("Endereço não encontrado.");
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.error("Erro na busca do endereço:", error);
+                    alert("Erro ao buscar o endereço. Verifique se o CEP ou endereço estão corretos.");
+                })
+                .finally(() => {
+                    document.getElementById("address").value = ""; 
+                });
+        });
+
+       
+        function addSearchMarker(lat, lon, ...popupText) {
+            if (searchMarker) {
+                map.removeLayer(searchMarker); 
             }
-          })
-          .catch((error) => {
-            console.error("Erro na busca do endereço:", error);
-          });
-      });
 
-      // Obtém a localização atual do usuário
-      function locateUser() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const userLat = position.coords.latitude;
-              const userLon = position.coords.longitude;
-
-              // Centraliza o mapa na localização do usuário
-              map.setView([userLat, userLon], 16);
-
-              // Adiciona um marcador na localização do usuário
-              L.marker([userLat, userLon])
-                .addTo(map)
-                .bindPopup("Você está aqui!")
-                .openPopup();
-            },
-            () => {
-              alert("Erro ao obter a localização.");
+            if (userMarker) {
+                map.removeLayer(userMarker); 
             }
-          );
-        } else {
-          alert("Geolocalização não é suportada por este navegador.");
+
+            searchMarker = L.marker([lat, lon])
+                .addTo(map)
+                .bindPopup(popupText.join(', ')) 
+                .openPopup();
         }
-      }
 
-      // Chama a função para localizar o usuário ao carregar a página
-      window.onload = locateUser; // Garante que a função seja chamada ao carregar a página
+
+        function locateUser() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const { latitude, longitude } = position.coords;
+                   
+                    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&addressdetails=1`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Erro ao obter a descrição do local.");
+                            }
+                            return response.json();
+                        })
+                        .then(locationData => {
+                            const locationDescription = locationData.display_name; 
+                            userMarker = L.marker([latitude, longitude]).addTo(map)
+                                .bindPopup(locationDescription) 
+                                .openPopup();
+                        })
+                        .catch((error) => {
+                            console.error("Erro na localização do usuário:", error);
+                            alert("Erro ao localizar o usuário.");
+                        });
+                }, () => {
+                    alert("Não foi possível obter a localização.");
+                });
+            } else {
+                alert("Geolocalização não é suportada neste navegador.");
+            }
+        }
+
+        locateUser(); 
     </script>
-  </body>
+</body>
 </html>

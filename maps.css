@@ -19,7 +19,7 @@
   background-color: transparent;
   padding: 10px;
   border-radius: 5px;
- 
+
   display: flex;
   gap: 10px;
   align-items: center;
@@ -36,9 +36,9 @@
   background-color: rgba(255, 255, 255, 0.897);
   border-radius: 5px;
   border: 1px solid rgb(29, 4, 138);
-  padding: 6px;
+  padding: 4px;
+  margin-top: 3px;
 }
-
 
 html,
 body {
@@ -52,7 +52,6 @@ body {
   flex-direction: column;
 }
 
-
 .nav {
   display: flex;
   justify-content: flex-end;
@@ -64,7 +63,6 @@ body {
   z-index: 1000;
   background-color: transparent;
 }
-
 
 .nav-links {
   display: flex;
@@ -90,7 +88,6 @@ body {
 .nav-links a:hover {
   text-decoration: underline;
   color: #2bd6b4;
- 
 }
 
 .burguer {
@@ -106,13 +103,11 @@ body {
   margin: 5px;
 }
 
-
 #menu-toggle {
   display: none;
 }
 
 @media (max-width: 1000px) {
-
   .nav-links {
     display: none;
     flex-direction: column;
@@ -131,12 +126,10 @@ body {
     padding: 10px 0;
   }
 
-
   #menu-toggle:checked ~ .nav-links {
     display: flex;
   }
 
-  
   .burguer {
     display: flex;
   }

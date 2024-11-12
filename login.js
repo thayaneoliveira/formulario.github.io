@@ -6,7 +6,7 @@ import {
 
 const provider = new GoogleAuthProvider();
 
-// Formulário de login
+
 document
   .getElementById("loginForm")
   .addEventListener("submit", function (event) {
@@ -26,11 +26,11 @@ document
     }
   });
 
-// Login com Google
+
 document.getElementById("googleLogin").addEventListener("click", function () {
   signInWithPopup(auth, provider)
     .then((result) => {
-      // O usuário logado
+     
       const user = result.user;
       console.log("Usuário logado com Google:", user);
       sessionStorage.setItem("isAuthenticated", "true");

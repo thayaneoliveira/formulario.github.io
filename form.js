@@ -1,26 +1,21 @@
-
-import { db } from "./firebase-config.js"; 
+import { db } from "./firebase-config.js";
 import {
   collection,
   addDoc,
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
-
 emailjs.init("SoYFGdC765nftygyX");
-
 
 document
   .getElementById("loginForm")
   .addEventListener("submit", function (event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
-    
     const userName = document.getElementById("txt").value;
     const userEmail = document.getElementById("email").value;
     const userPhone = document.getElementById("broj").value;
     const userAge = document.getElementById("password").value;
 
-    
     const templateParams = {
       from_name: userName,
       to_email: userEmail,
@@ -28,7 +23,6 @@ document
       age: userAge,
     };
 
-  
     emailjs
       .send("gmailMessage", "template_febra45", templateParams)
       .then(function (response) {
@@ -37,9 +31,17 @@ document
           response.status,
           response.text
         );
-        alert("Formulário enviado com sucesso!");
 
-       
+        // Mostrar mensagem visual de sucesso
+        const successDiv = document.getElementById("successMessage");
+        successDiv.style.display = "block";
+
+        // Opcional: esconder a mensagem após 4 segundos
+        setTimeout(() => {
+          successDiv.style.display = "none";
+        }, 4000);
+
+        // Salvar no Firestore
         return addDoc(collection(db, "userSubmissions"), {
           name: userName,
           email: userEmail,
@@ -49,9 +51,7 @@ document
         });
       })
       .then(function () {
-        
         document.getElementById("loginForm").reset();
-       
       })
       .catch(function (error) {
         console.error("Erro ao enviar o e-mail ou salvar no Firestore:", error);
